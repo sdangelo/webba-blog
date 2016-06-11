@@ -1,0 +1,6 @@
+{meta key="title":		"Blog post"}
+{meta key="description":	"This is a blog post."}
+{meta key="published":		"2016-02-13T00:00:00.000Z"}
+{meta key="edited":		"2016-02-13T00:00:00.000Z"}
+
+{p: This is a blog post.}

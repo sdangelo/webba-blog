@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>My Webiste's blog feed</title>
+    <link>http://www.example.com</link>
+    <description>Just an example</description>{{~it.items :value:index}}
+    <item>
+      <title>{{=it.Webba.Marca.encodeHTML(value.dom.meta.title)}}</title>
+      <link>http://www.example.com/{{=it.Webba.Marca.encodeHTML(value.url)}}</link>
+      <description>{{=it.Webba.Marca.encodeHTML(value.dom.meta.description)}}</description>
+    </item>{{~}}
+  </channel>
+</rss>

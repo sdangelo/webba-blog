@@ -1,0 +1,10 @@
+{meta key="title":		"Long blog post"}
+{meta key="description":	"This is a longer blog post."}
+{meta key="published":		"2016-03-27T00:00:00.000Z"}
+{meta key="edited":		"2016-03-27T00:00:00.000Z"}
+
+{p: This is a longer blog post.}
+
+{endpreview:}
+
+{p: Indeed, this paragraph will not be in the preview.}

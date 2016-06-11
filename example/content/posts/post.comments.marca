@@ -1,0 +1,17 @@
+{comment:
+	{meta key="author":	"Somebody"}
+	{meta key="submitted":	"2016-02-13T00:00:00.000Z"}
+	{meta key="published":	"2016-02-13T00:00:00.000Z"}
+	{meta key="edited":	"2016-02-13T00:00:00.000Z"}
+
+	{p: This is a comment.}
+}
+
+{comment:
+	{meta key="author":	"Somebody else"}
+	{meta key="submitted":	"2016-02-13T00:00:00.000Z"}
+	{meta key="published":	"2016-02-13T00:00:00.000Z"}
+	{meta key="edited":	"2016-02-13T00:00:00.000Z"}
+
+	{p: This is another comment.}
+}
