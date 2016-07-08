@@ -24,6 +24,7 @@ module.exports = function (Webba, opt) {
 	Webba.Marca.HypertextElementProtos.endpreview =
 		Webba.Marca.DOMElementEndPreview;
 
+	var postPostParse = opt ? opt.postPostParse : null;
 	var postData = {};
 	function parsePost (post, url, postFile, commentsFile) {
 		if (post in postData)
@@ -59,6 +60,9 @@ module.exports = function (Webba, opt) {
 
 			postData[post].commentsRoots.push(c);
 		}
+
+		if (postPostParse)
+			postPostParse(Webba, postData[post]);
 	}
 
 	var postsDir = Webba.path.join("content", "posts");
@@ -72,6 +76,7 @@ module.exports = function (Webba, opt) {
 	var postUrls = new Array(posts.length);
 	var postUrlFunc = opt ? opt.postUrl : null;
 	var postOutFileFunc = opt ? opt.postOutFile : null;
+	var postCommentsPostParse = opt ? opt.postCommentsPostParse : null;
 	for (var i = 0; i < posts.length; i++) {
 		(function(){
 		var post = posts[i].slice(0, -11);
@@ -112,6 +117,8 @@ module.exports = function (Webba, opt) {
 								dom: dom
 							});
 						}
+						if (postCommentsPostParse)
+							postCommentsPostParse(Webba, data.comments);
 					});
 			},
 			depFile,
