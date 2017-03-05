@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Stefano D'Angelo <zanga.mail@gmail.com>
+ * Copyright (C) 2016, 2017 Stefano D'Angelo <zanga.mail@gmail.com>
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -21,8 +21,7 @@ module.exports = function (Webba, opt) {
 	function (parent, position) {
 		parent.endPreview = position;
 	};
-	Webba.Marca.HypertextElementProtos.endpreview =
-		Webba.Marca.DOMElementEndPreview;
+	Webba.marcaProtos.push({endpreview: Webba.Marca.DOMElementEndPreview});
 
 	var postPostParse = opt ? opt.postPostParse : null;
 	var postData = {};
@@ -35,7 +34,7 @@ module.exports = function (Webba, opt) {
 		var root = Webba.Marca.parse(Webba.Crea.fs.readFileSync(
 				Webba.getTopPath(postFile), "utf8"));
 		var dom = Object.create(Webba.Marca.DOMElementHypertextRoot);
-		dom.init(root, Webba.Marca.HypertextElementProtos);
+		dom.init(root, Webba.marcaProtos);
 		dom.meta.published = new Date(dom.meta.published);
 		dom.meta.edited = new Date(dom.meta.edited);
 
@@ -48,6 +47,13 @@ module.exports = function (Webba, opt) {
 		if (domp.endPreview) {
 			domp = Object.create(dom);
 			domp.children = domp.children.slice(0, domp.endPreview);
+			var lc = domp.children[domp.children.length - 1];
+			if (Webba.Marca.DOMElementText.isPrototypeOf(lc)) {
+				domp.children[domp.children.length - 1] =
+					Object.create(lc);
+				lc = domp.children[domp.children.length - 1];
+				lc.text = lc.text.replace(/\s$/, "");
+			}
 		}
 
 		postData[post] = { url: url, dom: dom, domPreview: domp,
@@ -108,7 +114,7 @@ module.exports = function (Webba, opt) {
 						data.comments = [];
 						for (var i = 0; i < d.commentsRoots.length; i++) {
 							var dom = Object.create(Webba.Marca.DOMElementHypertextRoot);
-							dom.init(d.commentsRoots[i], Webba.Marca.HypertextElementProtos);
+							dom.init(d.commentsRoots[i], Webba.marcaProtos);
 							data.comments.push({
 								submitted: new Date(dom.meta.submitted),
 								published: new Date(dom.meta.published),

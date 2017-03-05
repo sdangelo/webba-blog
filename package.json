@@ -1,6 +1,6 @@
 {
   "name": "webba-blog",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Blog plugin for Webba",
   "main": "webba-blog.js",
   "scripts": {
@@ -31,6 +31,6 @@
     "email": "zanga.mail@gmail.com"
   },
   "dependencies": {
-    "webba": "0.0.x"
+    "webba": "0.1.x"
   }
 }
